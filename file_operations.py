@@ -8,8 +8,8 @@ class FileOperations:
 
         self.directory_name = link.get_domain()
 
-        self.broken_file_name = 'broken.txt'
-        self.output_file_name = 'output.txt'
+        self.broken_file_name = BROKEN_FILE_NAME
+        self.output_file_name = OUTPUT_FILE_NAME
 
     def write_in_broken(self, line):
         return self.write_line(self.broken_file_name, line)
