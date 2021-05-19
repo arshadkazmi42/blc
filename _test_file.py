@@ -8,7 +8,7 @@ from file_operations import FileOperations
 
 class TestBrokenLinkChecker(unittest.TestCase):
 
-    def test_create_file_opertaions_file_names(self):
+    def test_init(self):
         URL = 'https://hackerone.com/login?xyz=123'
         lnk = Link(URL)
 

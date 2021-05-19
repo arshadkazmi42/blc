@@ -7,7 +7,7 @@ from blc import BrokenLinkChecker
 
 class TestBrokenLinkChecker(unittest.TestCase):
 
-    def test_create_blc(self):
+    def test_init(self):
         URL = 'https://hackerone.com/login?xyz=123'
         lnk = Link(URL)
 

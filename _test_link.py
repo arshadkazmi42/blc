@@ -5,7 +5,7 @@ from link import Link
 
 class TestLink(unittest.TestCase):
 
-    def test_link_create(self):
+    def test_init(self):
         URL = 'https://hackerone.com/login?xyz=123'
         lnk = Link(URL)
         self.assertEqual(lnk.url, URL, f'Should return the original url')
