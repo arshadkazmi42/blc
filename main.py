@@ -18,7 +18,6 @@ class Main:
         print(print_line)
 
         self.file_operations.write_in_output(print_line)
-        self.file_operations.write_in_broken(print_line)
 
     def run(self):
 
@@ -54,5 +53,5 @@ class Main:
             print_line = f'|-BROKEN-| {url}'
             print(print_line)
 
-            self.file_operations.write_in_broken(response)
+            self.file_operations.write_in_broken(url)
         
