@@ -10,11 +10,10 @@ pip install -r requirements.txt
 
 ## Usage
 
-> TODO
+```
+$ python start.py {URL}
+```
 
-## Pending
+## Notes
 
-1. URL response parser
-2. URL crawler from the page
-3. Each URL tested
-4. Writing results in file
+- Broken links will be stored in results directory
