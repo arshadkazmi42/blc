@@ -5,6 +5,8 @@ class Link:
     
     def __init__(self, url):
         self.url = url
+
+        self.clean()
         self.domain = self.get_domain()
 
     def get_url(self):
@@ -30,3 +32,8 @@ class Link:
 
     def get_domain(self):
         return parse.urlparse(self.url).netloc
+
+    def is_same_domain(self, url):
+
+        domain = parse.urlparse(url).netloc
+        return domain == self.get_domain()
