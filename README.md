@@ -17,3 +17,8 @@ $ python start.py {URL}
 ## Notes
 
 - Broken links will be stored in results directory
+- You can use this command to get list of broken links
+
+```
+$ cat results/*/broken.txt | grep -v Processing | sort | uniq
+```
