@@ -2,8 +2,8 @@
 
 - Find all the links from the response of the input link.
 - Checks each link if its broken or not.
-- Stores the broken links in results/*/broken.txt
-- Stores all the parsed urls from response in results/*/output.txt
+- Stores the broken links in `results/*/broken.txt`
+- Stores all the parsed urls from response in `results/*/output.txt`
 
 ## Setup
 
@@ -16,6 +16,13 @@ pip install -r requirements.txt
 ```
 $ python start.py {URL}
 ```
+
+### For crawling links
+
+```
+$ python start.py {URL} --crawl
+```
+
 
 ## Notes
 
