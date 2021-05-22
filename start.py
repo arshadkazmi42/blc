@@ -1,7 +1,13 @@
 import sys
+import time
 
 from main import Main
 
+
+def start():
+    url = get_args()
+    main = Main(url)
+    main.run()
 
 def get_args():
 
@@ -15,6 +21,6 @@ def get_args():
     return args[1]
 
 
-url = get_args()
-main = Main(url)
-main.run()
+start_time = time.time()
+start()
+print("Processed in %s minutes" % ((time.time() - start_time) / 60))

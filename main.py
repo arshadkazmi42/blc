@@ -1,3 +1,5 @@
+from multiprocessing.pool import ThreadPool as Pool
+
 from blc import BrokenLinkChecker
 from file_operations import FileOperations
 from link import Link
@@ -8,6 +10,9 @@ from scanner import Scanner
 class Main:
 
     def __init__(self, url):
+
+        self.pool_size = 10
+
         self.link = Link(url)
         self.blc = BrokenLinkChecker()
         self.file_operations = FileOperations(self.link)
@@ -37,21 +42,29 @@ class Main:
 
     def parse_response(self, response):
 
+        pool = Pool(self.pool_size)
         matches = self.scanner.find_all_links(response)
         for url in matches:
+            pool.apply_async(self.process, (url,))
 
-            self.file_operations.write_in_output(url)
+        pool.daemon = True
+        pool.close()
+        pool.join()
 
-            if self.link.is_same_domain(url):
-                continue
+    def process(self, url):
 
-            if not self.blc.is_broken(url):
-                print_line = f'|---OK---| {url}'
-                print(print_line)
-                continue
+        self.file_operations.write_in_output(url)
 
-            print_line = f'|-BROKEN-| {url}'
+        if self.link.is_same_domain(url):
+            return None
+
+        if not self.blc.is_broken(url):
+            print_line = f'|---OK---| {url}'
             print(print_line)
+            return None
 
-            self.file_operations.write_in_broken(url)
+        print_line = f'|-BROKEN-| {url}'
+        print(print_line)
+
+        self.file_operations.write_in_broken(url)
         
