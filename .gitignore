@@ -1,6 +1,7 @@
 # Core Code
 results/
 source/
+old/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
