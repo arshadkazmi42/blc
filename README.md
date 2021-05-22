@@ -1,6 +1,9 @@
 # BLC
 
-Checks link is broken or not and stores in respective files
+- Find all the links from the response of the input link.
+- Checks each link if its broken or not.
+- Stores the broken links in results/*/broken.txt
+- Stores all the parsed urls from response in results/*/output.txt
 
 ## Setup
 
