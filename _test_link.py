@@ -110,6 +110,29 @@ class TestLink(unittest.TestCase):
         self.assertEqual(lnk.is_same_domain(SUB_URL), True, f'Should return True for same domain url')
         self.assertEqual(lnk.is_same_domain(SUB_URL_OTHER_DOMAIN), False, f'Should return False for other domain url')
 
+    def test_is_domain_and_sub_domain(self):
+        
+        URL = 'https://hackerone.com/login'
+        SUB_URL = 'https://sub.hackerone.com/broken'
+        SUB_URL_OTHER_DOMAIN = 'https://sub.example.com/broken'
+
+        lnk = Link(URL)
+
+        self.assertEqual(lnk.is_same_domain(SUB_URL), True, f'Should return True for same domain url')
+        self.assertEqual(lnk.is_same_domain(SUB_URL_OTHER_DOMAIN), False, f'Should return False for other domain url')
+
+    def test_is_mime_url(self):
+        
+        URL = 'https://hackerone.com/login.pdf'
+        SUB_URL = 'https://sub.hackerone.com/broken.png'
+        SUB_URL_OTHER_DOMAIN = 'https://sub.example.com/broken'
+
+        lnk = Link(URL)
+
+        self.assertEqual(lnk.is_mime_url(URL), True, f'Should return True for mime url')
+        self.assertEqual(lnk.is_mime_url(SUB_URL), True, f'Should return True for mime url')
+        self.assertEqual(lnk.is_mime_url(SUB_URL_OTHER_DOMAIN), False, f'Should return False for mime url')
+
 
 if __name__ == '__main__':
     unittest.main()

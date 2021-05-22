@@ -4,6 +4,7 @@ from pathlib import Path
 RESULTS_DIRECTORY = 'results'
 BROKEN_FILE_NAME = 'broken.txt'
 OUTPUT_FILE_NAME = 'output.txt'
+LINKS_FILE_NAME = 'links.txt'
 
 
 class FileOperations:
@@ -15,6 +16,7 @@ class FileOperations:
 
         self.broken_file_name = BROKEN_FILE_NAME
         self.output_file_name = OUTPUT_FILE_NAME
+        self.links_file_name = LINKS_FILE_NAME
 
         self.create_directory()
 
@@ -27,6 +29,9 @@ class FileOperations:
 
     def write_in_output(self, line):
         return self.write_line(self.output_file_name, line)
+
+    def write_in_links(self, line):
+        return self.write_line(self.links_file_name, line)
         
     def write_line(self, filename, line):
 

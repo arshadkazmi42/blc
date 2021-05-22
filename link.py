@@ -1,3 +1,5 @@
+import mimetypes
+
 from urllib import parse
 
 
@@ -36,4 +38,25 @@ class Link:
     def is_same_domain(self, url):
 
         domain = parse.urlparse(url).netloc
-        return domain == self.get_domain()
+        
+        if self.domain in domain:
+            return True
+        
+        if len(domain) != len(self.domain):
+            return False
+
+        index = len(domain) - 1
+        while(index > 0):
+            if domain[i] != self.domain[i]:
+                return False
+
+        return True
+
+    def is_mime_url(self, url):
+
+        mimetype,encoding = mimetypes.guess_type(url)
+
+        if not mimetype:
+            return False
+
+        return True

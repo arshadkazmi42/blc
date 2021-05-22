@@ -4,9 +4,12 @@ import time
 from main import Main
 
 
+CRAWL_ARGUMENT = ['--crawl', '-c']
+
+
 def start():
     url = get_args()
-    main = Main(url)
+    main = Main(url, is_crawl_request())
     main.run()
 
 def get_args():
@@ -19,6 +22,16 @@ def get_args():
         exit()
 
     return args[1]
+
+def is_crawl_request():
+
+    args = sys.argv
+    
+    for carg in CRAWL_ARGUMENT:
+        if carg in args:
+            return True
+
+    return False
 
 
 start_time = time.time()

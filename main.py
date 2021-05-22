@@ -7,17 +7,22 @@ from request import Request
 from scanner import Scanner
 
 
+MAX_POOL_SIZE = 10
+
+
 class Main:
 
-    def __init__(self, url):
+    def __init__(self, url, is_crawl_request=False):
 
-        self.pool_size = 10
+        self.should_crawl = is_crawl_request
 
         self.link = Link(url)
         self.blc = BrokenLinkChecker()
         self.file_operations = FileOperations(self.link)
         self.request = Request()
         self.scanner = Scanner()
+
+        self.pool_size = MAX_POOL_SIZE
 
         print_line = f'Processing {url}'
         print(print_line)
@@ -53,6 +58,14 @@ class Main:
 
     def process(self, url):
 
+        if self.should_crawl:
+            self.process_crawl(url)    
+        else:    
+            self.process_blc(url)
+
+
+    def process_blc(self, url):
+
         self.file_operations.write_in_output(url)
 
         if self.link.is_same_domain(url):
@@ -67,4 +80,13 @@ class Main:
         print(print_line)
 
         self.file_operations.write_in_broken(url)
-        
+
+    def process_crawl(self, url):
+
+        is_mime_url = self.link.is_mime_url(url)
+        is_same_domain_url = self.link.is_same_domain(url)
+
+        if is_same_domain_url and not is_mime_url:
+
+            print(f'Found link: {url}')
+            self.file_operations.write_in_links(url)
