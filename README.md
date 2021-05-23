@@ -14,13 +14,13 @@ pip install -r requirements.txt
 ## Usage
 
 ```
-$ python start.py {URL}
+$ python start.py --file {FILE_NAME}
 ```
 
 ### For crawling links
 
 ```
-$ python start.py {URL} --crawl
+$ python start.py --crawl {FILE_NAME}
 ```
 
 
