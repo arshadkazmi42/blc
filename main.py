@@ -24,10 +24,8 @@ class Main:
 
         self.pool_size = MAX_POOL_SIZE
 
-        print_line = f'Processing {url}'
-        print(print_line)
-
-        self.file_operations.write_in_output(print_line)
+        self.print_line = f'Processing {url}'
+        print(self.print_line)
 
     def run(self):
 
@@ -66,7 +64,7 @@ class Main:
 
     def process_blc(self, url):
 
-        self.file_operations.write_in_output(url)
+        self.file_operations.write_in_output(f'{self.print_line}\n{url}\n\n')
 
         if self.link.is_same_domain(url):
             return None
