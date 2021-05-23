@@ -5,21 +5,25 @@ from multiprocessing.pool import ThreadPool as Pool
 
 from main import Main
 
-MAX_POOL_SIZE = 5
+MAX_POOL_SIZE = 10
 COMMAND_LINE_ARGUMENTS = {
-    'CRAWL': ['--crawl', '-c'],
+    'CRAWL': '--crawl',
     'FILE': '--file'
 }
 
 
 def start():
     input_file = get_input_file()
-    should_crawl = is_crawl_request()
+    crawl_file = get_crawl_file()
 
     if input_file:
-        return process_file(input_file, should_crawl)
+        return process_file(input_file)
 
-def is_crawl_request():
+    if crawl_file:
+        should_crawl = True
+        return process_file(crawl_file, should_crawl)
+
+def get_crawl_file():
 
     args = sys.argv
     
@@ -44,7 +48,7 @@ def get_input_file():
     except Exception as e:
         return None
 
-def process_file(filename, is_crawl_request):
+def process_file(filename, is_crawl_request=False):
 
     fyle = open(filename, 'r')
     file_lines = fyle.readlines()
