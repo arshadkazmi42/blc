@@ -7,7 +7,7 @@ if [ -f source/$1.txt ]; then
 	exit 0
 fi
 
-sh $SUBDOMAINS_PATH/subdomains.sh $1
+# JS and GAU gets subdomains if not exists
 sh $JS_PATH/run.sh $1
 sh $GAU_PATH/get.sh $1
 
