@@ -24,21 +24,18 @@ def start():
         return process_file(crawl_file, should_crawl)
 
 def get_crawl_file():
+    return get_file(COMMAND_LINE_ARGUMENTS['CRAWL'])
 
-    args = sys.argv
-    
-    for argument in COMMAND_LINE_ARGUMENTS['CRAWL']:
-        if argument in args:
-            return True
-
-    return False
 
 def get_input_file():
+    return get_file(COMMAND_LINE_ARGUMENTS['FILE'])
+
+def get_file(cmd_argument):
 
     try:
 
         args = sys.argv
-        index = args.index(COMMAND_LINE_ARGUMENTS['FILE'])
+        index = args.index(cmd_argument)
 
         if index and len(args) > index + 1:
             return args[index + 1]
@@ -51,7 +48,7 @@ def get_input_file():
 def process_file(filename, is_crawl_request=False):
 
     fyle = open(filename, 'r')
-    file_lines = fyle.readlines()
+    file_lines = fyle.read().splitlines()
 
     pool = Pool(MAX_POOL_SIZE)
 
