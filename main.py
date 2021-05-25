@@ -29,9 +29,13 @@ class Main:
 
     def run(self):
 
-        url = self.link.get_url()
-
         try:
+
+            url = self.link.get_url()
+            is_media_url = self.link.is_media_url(url)
+            
+            if is_media_url:
+                return None
             
             response = self.request.get_text_response(url)
             if not response:
@@ -81,10 +85,11 @@ class Main:
 
     def process_crawl(self, url):
 
-        is_mime_url = self.link.is_mime_url(url)
+        is_media_url = self.link.is_media_url(url)
         is_same_domain_url = self.link.is_same_domain(url)
 
-        if is_same_domain_url and not is_mime_url:
+
+        if is_same_domain_url and not is_media_url:
 
             print(f'Found link: {url}')
             self.file_operations.write_in_links(url)

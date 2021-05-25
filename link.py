@@ -3,6 +3,9 @@ import mimetypes
 from urllib import parse
 
 
+MIME_TYPES_MEDIA = ['audio', 'video', 'image', 'font', 'application/zip', 'application/x-debian-package', 'application/pdf', 'application/x-redhat-package-manager', 'application/x-apple-diskimage', 'application/x-msdos-program', 'application/x-tar']
+
+
 class Link:
     
     def __init__(self, url):
@@ -52,11 +55,11 @@ class Link:
 
         return True
 
-    def is_mime_url(self, url):
+    def is_media_url(self, url):
+        
+        url_path = parse.urlparse(url).path
+        mimetype,encoding = mimetypes.guess_type(url_path)
+        if mimetype and (mimetype.startswith(tuple(MIME_TYPES_MEDIA))):
+            return True
 
-        mimetype,encoding = mimetypes.guess_type(url)
-
-        if not mimetype:
-            return False
-
-        return True
+        return False
