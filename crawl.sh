@@ -3,12 +3,20 @@ if [ -f source/$1.txt ]; then
         exit 0
 fi
 
-sh $BBS_PATH/subdomains/subdomains.sh $1
+DEPTH=5
 
+# Check for input depth
+if [ $2 ]; then
+        DEPTH=$2
+fi
+
+echo "Using Depth: "$DEPTH
+
+sh $BBS_PATH/subdomains/subdomains.sh $1
 
 cat $BBS_PATH/subdomains/subdomains/$1.txt > source/$1.txt
 
-for i in 0 1 2 3 4 5
+for i in $(seq 1 $DEPTH);
 do
         cat source/$1.txt | anew crawl_old.txt > crawl_process.txt
         
@@ -19,7 +27,6 @@ done
 
 
 cat results/*/links.txt | sort | uniq > source/$1.txt
-
 
 rm -rf crawl_process.txt crawl_old.txt
 rm -rf results/*/

@@ -5,6 +5,11 @@
 - Stores the broken links in `results/*/broken.txt`
 - Stores all the parsed urls from response in `results/*/output.txt`
 
+## Prerequisite
+
+1. Install anew. This will be needed for crawl.sh script
+https://github.com/tomnomnom/anew
+
 ## Setup
 
 ```
@@ -17,10 +22,22 @@ pip install -r requirements.txt
 $ python start.py --file {FILE_NAME}
 ```
 
+**Example**
+
+```
+$ python start.py --file hackeronne-links.txt
+```
+
 ### For crawling links
 
 ```
-$ python start.py --crawl {FILE_NAME}
+$ python start.py --crawl {FILE_NAME} {DEPTH}
+```
+
+**Example**
+
+```
+$ python start.py --crawl hackerone-subdomains.txt 5
 ```
 
 
