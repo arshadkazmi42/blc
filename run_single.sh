@@ -1,5 +1,4 @@
-sh crawl.sh $1 $2
-#sh generate.sh $1
+sh crawl_single.sh $1 $2
 python3 start.py --file source/$1.txt
 cat results/*/broken.txt | sort | uniq > final/$1_broken.txt
 cat results/*/output.txt > final/$1_output.txt
