@@ -1,5 +1,10 @@
 DEPTH=3
 
+# Check for input depth
+if [ $1 ]; then
+        DEPTH=$1
+fi
+
 echo "Using Depth: "$DEPTH
 
 mkdir results
