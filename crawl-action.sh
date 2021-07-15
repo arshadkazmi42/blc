@@ -2,7 +2,6 @@ DEPTH=3
 
 echo "Using Depth: "$DEPTH
 
-mkdir source
 mkdir results
 cat ../output/active_urls.txt > ../output/crawl_urls.txt
 
